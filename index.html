@@ -82,91 +82,16 @@
       </form>
       <p class="waitlist-note">Free to join. No spam. Launch notification only.</p>
 
-      <!-- Graph illustration -->
+      <!-- Graph illustration — interactive canvas (graph.js) -->
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-graph-card">
           <p class="hero-graph-label">knowledge graph · 12 notes · 18 connections</p>
-
-          <svg class="graph-scene" viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <!-- Edge gradient: sand → sage -->
-              <linearGradient id="eg1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%"   stop-color="oklch(0.72 0.085 72)"  stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="oklch(0.62 0.080 148)" stop-opacity="0.35"/>
-              </linearGradient>
-              <linearGradient id="eg2" x1="1" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="oklch(0.62 0.080 148)" stop-opacity="0.28"/>
-                <stop offset="100%" stop-color="oklch(0.72 0.085 72)"  stop-opacity="0.28"/>
-              </linearGradient>
-
-              <!-- Node fills -->
-              <radialGradient id="node-main" cx="38%" cy="35%" r="65%">
-                <stop offset="0%"   stop-color="oklch(0.80 0.075 72)"/>
-                <stop offset="100%" stop-color="oklch(0.63 0.090 72)"/>
-              </radialGradient>
-              <radialGradient id="node-link" cx="38%" cy="35%" r="65%">
-                <stop offset="0%"   stop-color="oklch(0.72 0.070 148)"/>
-                <stop offset="100%" stop-color="oklch(0.54 0.080 148)"/>
-              </radialGradient>
-              <radialGradient id="node-sm" cx="40%" cy="38%" r="62%">
-                <stop offset="0%"   stop-color="oklch(0.94 0.009 76)"/>
-                <stop offset="100%" stop-color="oklch(0.915 0.010 74)"/>
-              </radialGradient>
-            </defs>
-
-            <!-- ---- Edges ---- -->
-            <!-- Central hub to secondaries -->
-            <line x1="360" y1="160" x2="200" y2="90"  stroke="url(#eg1)" stroke-width="1.5"/>
-            <line x1="360" y1="160" x2="520" y2="85"  stroke="url(#eg1)" stroke-width="1.5"/>
-            <line x1="360" y1="160" x2="170" y2="220" stroke="url(#eg2)" stroke-width="1.5"/>
-            <line x1="360" y1="160" x2="550" y2="230" stroke="url(#eg2)" stroke-width="1.5"/>
-            <line x1="360" y1="160" x2="360" y2="295" stroke="url(#eg1)" stroke-width="1.5"/>
-            <!-- Cross-links -->
-            <line x1="200" y1="90"  x2="520" y2="85"  stroke="url(#eg2)" stroke-width="1" opacity="0.55"/>
-            <line x1="170" y1="220" x2="360" y2="295" stroke="url(#eg1)" stroke-width="1" opacity="0.55"/>
-            <line x1="550" y1="230" x2="360" y2="295" stroke="url(#eg2)" stroke-width="1" opacity="0.55"/>
-            <!-- Peripheral nodes -->
-            <line x1="200" y1="90"  x2="100" y2="50"  stroke="url(#eg2)" stroke-width="1" opacity="0.4"/>
-            <line x1="520" y1="85"  x2="630" y2="45"  stroke="url(#eg1)" stroke-width="1" opacity="0.4"/>
-            <line x1="170" y1="220" x2="75"  y2="295" stroke="url(#eg2)" stroke-width="1" opacity="0.4"/>
-            <line x1="550" y1="230" x2="650" y2="295" stroke="url(#eg1)" stroke-width="1" opacity="0.4"/>
-            <line x1="360" y1="295" x2="255" y2="330" stroke="url(#eg2)" stroke-width="1" opacity="0.4"/>
-            <line x1="360" y1="295" x2="465" y2="330" stroke="url(#eg1)" stroke-width="1" opacity="0.4"/>
-
-            <!-- ---- Peripheral nodes (small, neutral) ---- -->
-            <circle cx="100" cy="50"  r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
-            <circle cx="630" cy="45"  r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
-            <circle cx="75"  cy="295" r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
-            <circle cx="650" cy="295" r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
-            <circle cx="255" cy="330" r="7"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
-            <circle cx="465" cy="330" r="7"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
-
-            <!-- ---- Secondary nodes (sage) ---- -->
-            <circle cx="200" cy="90"  r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
-            <circle cx="520" cy="85"  r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
-            <circle cx="170" cy="220" r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
-            <circle cx="550" cy="230" r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
-            <circle cx="360" cy="295" r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
-
-            <!-- ---- Central node (sand/accent) ---- -->
-            <circle cx="360" cy="160" r="28" fill="url(#node-main)" stroke="oklch(1 0 0 / 0.40)" stroke-width="1.5"/>
-            <!-- Sheen on central node -->
-            <circle cx="353" cy="152" r="7"  fill="oklch(1 0 0 / 0.30)"/>
-
-            <!-- ---- Node labels ---- -->
-            <!-- Central -->
-            <text x="360" y="208" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)" font-weight="500">My thinking</text>
-
-            <!-- Secondary labels -->
-            <text x="200" y="116" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Research</text>
-            <text x="520" y="111" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Ideas</text>
-            <text x="145" y="247" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Projects</text>
-            <text x="578" y="255" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Reading</text>
-            <text x="360" y="320" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Journal</text>
-
-            <!-- Metadata tag -->
-            <text x="12" y="16" class="graph-node-label--mono" fill="oklch(0.500 0.008 72)">physics · live</text>
-          </svg>
+          <canvas
+            id="graph-canvas"
+            class="graph-scene"
+            aria-hidden="true"
+            style="touch-action: none; display: block; width: 100%; aspect-ratio: 720 / 340;"
+          ></canvas>
         </div>
       </div>
     </div>
@@ -355,6 +280,11 @@
       <p class="footer-copy">&copy; 2026 Lumen. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- ============================================================
+       INTERACTIVE HERO GRAPH (physics + drag)
+  ============================================================ -->
+  <script src="graph.js"></script>
 
   <!-- ============================================================
        WAITLIST → SUPABASE

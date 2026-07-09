@@ -341,11 +341,12 @@ button, input { font-family: inherit; }
   text-align: left;
 }
 
-/* SVG graph scene */
+/* Graph scene — canvas replaces the old SVG; same sizing behaviour */
 .graph-scene {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: calc(var(--radius-xl) - 1px); /* match card corners */
 }
 
 /* ---------- Divider ---------- */
