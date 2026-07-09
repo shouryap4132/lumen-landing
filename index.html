@@ -356,5 +356,55 @@
     </div>
   </footer>
 
+  <!-- ============================================================
+       WAITLIST → SUPABASE
+       Uses the public "anon" key. RLS allows insert-only, so this key
+       can add emails but cannot read the list. See backend/waitlist.sql.
+  ============================================================ -->
+  <script>
+    (function () {
+      var SUPABASE_URL = "https://ucuqikufbrpynrvrdcfa.supabase.co";
+      var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjdXFpa3VmYnJweW5ydnJkY2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNzg2NjUsImV4cCI6MjA5Njg1NDY2NX0.kkp6ChCbALq9oo_5lsMVvhgEME3SCfQeLozKCsOPIv0";
+
+      document.querySelectorAll(".waitlist-form").forEach(function (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var input = form.querySelector('input[type="email"]');
+          var button = form.querySelector('button[type="submit"]');
+          var note = form.parentElement.querySelector(".waitlist-note");
+          var email = (input && input.value || "").trim();
+          if (!email) return;
+
+          if (button) { button.disabled = true; button.textContent = "Joining…"; }
+
+          fetch(SUPABASE_URL + "/rest/v1/waitlist", {
+            method: "POST",
+            headers: {
+              "apikey": SUPABASE_ANON_KEY,
+              "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+              "Content-Type": "application/json",
+              "Prefer": "return=minimal"
+            },
+            body: JSON.stringify({ email: email, source: "landing" })
+          }).then(function (res) {
+            if (res.ok) {
+              form.style.display = "none";
+              if (note) { note.textContent = "You're on the list. We'll email you at launch."; }
+            } else if (res.status === 409) {
+              form.style.display = "none";
+              if (note) { note.textContent = "You're already on the list — see you at launch."; }
+            } else {
+              if (button) { button.disabled = false; button.textContent = "Get early access"; }
+              if (note) { note.textContent = "Something went wrong. Please try again."; }
+            }
+          }).catch(function () {
+            if (button) { button.disabled = false; button.textContent = "Get early access"; }
+            if (note) { note.textContent = "Network error. Please try again."; }
+          });
+        });
+      });
+    })();
+  </script>
+
 </body>
 </html>
