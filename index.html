@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lumen is an iPad-first handwriting app where every note becomes a node in a living knowledge graph. Think spatially. Remember everything." />
+  <title>Lumen — Your notes, connected</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav" role="banner">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#" aria-label="Lumen home">
+        <!-- Logomark (inline SVG — no network request) -->
+        <svg class="nav-logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <radialGradient id="nav-core" cx="50%" cy="42%" r="60%">
+              <stop offset="0%"   stop-color="#D8C0A0" />
+              <stop offset="60%"  stop-color="#C4A57B" />
+              <stop offset="100%" stop-color="#A8875D" />
+            </radialGradient>
+            <linearGradient id="nav-edge" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#C4A57B" />
+              <stop offset="100%" stop-color="#7A9E82" />
+            </linearGradient>
+          </defs>
+          <path d="M24 16 L13 33" stroke="url(#nav-edge)" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
+          <path d="M24 16 L35 33" stroke="url(#nav-edge)" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
+          <path d="M13 33 L35 33" stroke="#7A9E82" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
+          <circle cx="13" cy="33" r="4.6" fill="#7A9E82"/>
+          <circle cx="35" cy="33" r="4.6" fill="#7A9E82"/>
+          <circle cx="24" cy="16" r="8.4" fill="url(#nav-core)"/>
+          <circle cx="24" cy="16" r="8.4" fill="none" stroke="#EDE4D4" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="21.4" cy="13.4" r="2.2" fill="#FBF7F0" opacity="0.85"/>
+        </svg>
+        <span class="nav-wordmark">Lumen</span>
+        <span class="nav-badge">Coming soon</span>
+      </a>
+
+      <a class="nav-cta" href="#waitlist">Join the waitlist</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" aria-labelledby="hero-headline">
+    <div class="container">
+      <span class="hero-eyebrow">iPad · Apple Pencil · Knowledge graph</span>
+
+      <h1 class="hero-headline" id="hero-headline">
+        Your notes,<br><em>connected</em>
+      </h1>
+
+      <p class="hero-sub">
+        Lumen is a handwriting-first iPad app where every note becomes a node.
+        Write with your Pencil. Watch your thinking take shape.
+      </p>
+
+      <!-- Waitlist capture -->
+      <form
+        class="waitlist-form"
+        id="waitlist"
+        action="#"
+        method="post"
+        aria-label="Join the waitlist"
+      >
+        <input
+          class="waitlist-input"
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required
+          aria-label="Email address"
+        />
+        <button class="waitlist-btn" type="submit">Get early access</button>
+      </form>
+      <p class="waitlist-note">Free to join. No spam. Launch notification only.</p>
+
+      <!-- Graph illustration -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-graph-card">
+          <p class="hero-graph-label">knowledge graph · 12 notes · 18 connections</p>
+
+          <svg class="graph-scene" viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Edge gradient: sand → sage -->
+              <linearGradient id="eg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="oklch(0.72 0.085 72)"  stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="oklch(0.62 0.080 148)" stop-opacity="0.35"/>
+              </linearGradient>
+              <linearGradient id="eg2" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="oklch(0.62 0.080 148)" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="oklch(0.72 0.085 72)"  stop-opacity="0.28"/>
+              </linearGradient>
+
+              <!-- Node fills -->
+              <radialGradient id="node-main" cx="38%" cy="35%" r="65%">
+                <stop offset="0%"   stop-color="oklch(0.80 0.075 72)"/>
+                <stop offset="100%" stop-color="oklch(0.63 0.090 72)"/>
+              </radialGradient>
+              <radialGradient id="node-link" cx="38%" cy="35%" r="65%">
+                <stop offset="0%"   stop-color="oklch(0.72 0.070 148)"/>
+                <stop offset="100%" stop-color="oklch(0.54 0.080 148)"/>
+              </radialGradient>
+              <radialGradient id="node-sm" cx="40%" cy="38%" r="62%">
+                <stop offset="0%"   stop-color="oklch(0.94 0.009 76)"/>
+                <stop offset="100%" stop-color="oklch(0.915 0.010 74)"/>
+              </radialGradient>
+            </defs>
+
+            <!-- ---- Edges ---- -->
+            <!-- Central hub to secondaries -->
+            <line x1="360" y1="160" x2="200" y2="90"  stroke="url(#eg1)" stroke-width="1.5"/>
+            <line x1="360" y1="160" x2="520" y2="85"  stroke="url(#eg1)" stroke-width="1.5"/>
+            <line x1="360" y1="160" x2="170" y2="220" stroke="url(#eg2)" stroke-width="1.5"/>
+            <line x1="360" y1="160" x2="550" y2="230" stroke="url(#eg2)" stroke-width="1.5"/>
+            <line x1="360" y1="160" x2="360" y2="295" stroke="url(#eg1)" stroke-width="1.5"/>
+            <!-- Cross-links -->
+            <line x1="200" y1="90"  x2="520" y2="85"  stroke="url(#eg2)" stroke-width="1" opacity="0.55"/>
+            <line x1="170" y1="220" x2="360" y2="295" stroke="url(#eg1)" stroke-width="1" opacity="0.55"/>
+            <line x1="550" y1="230" x2="360" y2="295" stroke="url(#eg2)" stroke-width="1" opacity="0.55"/>
+            <!-- Peripheral nodes -->
+            <line x1="200" y1="90"  x2="100" y2="50"  stroke="url(#eg2)" stroke-width="1" opacity="0.4"/>
+            <line x1="520" y1="85"  x2="630" y2="45"  stroke="url(#eg1)" stroke-width="1" opacity="0.4"/>
+            <line x1="170" y1="220" x2="75"  y2="295" stroke="url(#eg2)" stroke-width="1" opacity="0.4"/>
+            <line x1="550" y1="230" x2="650" y2="295" stroke="url(#eg1)" stroke-width="1" opacity="0.4"/>
+            <line x1="360" y1="295" x2="255" y2="330" stroke="url(#eg2)" stroke-width="1" opacity="0.4"/>
+            <line x1="360" y1="295" x2="465" y2="330" stroke="url(#eg1)" stroke-width="1" opacity="0.4"/>
+
+            <!-- ---- Peripheral nodes (small, neutral) ---- -->
+            <circle cx="100" cy="50"  r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
+            <circle cx="630" cy="45"  r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
+            <circle cx="75"  cy="295" r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
+            <circle cx="650" cy="295" r="9"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
+            <circle cx="255" cy="330" r="7"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
+            <circle cx="465" cy="330" r="7"  fill="url(#node-sm)" stroke="oklch(0.30 0.010 74 / 0.14)" stroke-width="1"/>
+
+            <!-- ---- Secondary nodes (sage) ---- -->
+            <circle cx="200" cy="90"  r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
+            <circle cx="520" cy="85"  r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
+            <circle cx="170" cy="220" r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
+            <circle cx="550" cy="230" r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
+            <circle cx="360" cy="295" r="16" fill="url(#node-link)" stroke="oklch(1 0 0 / 0.35)" stroke-width="1"/>
+
+            <!-- ---- Central node (sand/accent) ---- -->
+            <circle cx="360" cy="160" r="28" fill="url(#node-main)" stroke="oklch(1 0 0 / 0.40)" stroke-width="1.5"/>
+            <!-- Sheen on central node -->
+            <circle cx="353" cy="152" r="7"  fill="oklch(1 0 0 / 0.30)"/>
+
+            <!-- ---- Node labels ---- -->
+            <!-- Central -->
+            <text x="360" y="208" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)" font-weight="500">My thinking</text>
+
+            <!-- Secondary labels -->
+            <text x="200" y="116" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Research</text>
+            <text x="520" y="111" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Ideas</text>
+            <text x="145" y="247" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Projects</text>
+            <text x="578" y="255" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Reading</text>
+            <text x="360" y="320" text-anchor="middle" class="graph-node-label" fill="oklch(0.39 0.010 74)">Journal</text>
+
+            <!-- Metadata tag -->
+            <text x="12" y="16" class="graph-node-label--mono" fill="oklch(0.500 0.008 72)">physics · live</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       HOW IT WORKS
+  ============================================================ -->
+  <section class="how" aria-labelledby="how-heading">
+    <div class="container">
+      <p class="section-eyebrow">How it works</p>
+      <h2 class="section-heading" id="how-heading">Write. Link. Explore.</h2>
+      <p class="section-sub">
+        Three interactions. One coherent picture of your thinking.
+      </p>
+
+      <div class="steps">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <p class="step-number">01</p>
+          <h3 class="step-title">Write by hand</h3>
+          <p class="step-body">
+            Pick up your Apple Pencil and write. Lumen captures ink at full Pencil
+            latency — pressure, tilt, all of it. No lag, no compromise.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <p class="step-number">02</p>
+          <h3 class="step-title">Link what belongs together</h3>
+          <p class="step-body">
+            Type <code style="font-family: var(--font-mono); font-size: 0.8em; background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 4px;">[[Note title]]</code> anywhere and a
+            connection is born. Backlinks appear automatically. The graph builds itself
+            as you write.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <p class="step-number">03</p>
+          <h3 class="step-title">See the shape of your thinking</h3>
+          <p class="step-body">
+            Open the graph and watch your notes orbit one another. Physics-driven
+            layout reveals clusters and connections you didn't know existed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES
+  ============================================================ -->
+  <section class="features" aria-labelledby="features-heading">
+    <div class="container">
+      <p class="section-eyebrow">Built for iPad</p>
+      <h2 class="section-heading" id="features-heading">Everything in service of the Pencil</h2>
+      <p class="section-sub">
+        No keyboard required. No desktop-style menus. Lumen is touch and Pencil
+        from the first pixel.
+      </p>
+
+      <div class="features-grid">
+
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--sand" aria-hidden="true">
+            <!-- Pencil icon -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.5 2.5a1.768 1.768 0 0 1 2.5 2.5L6 16l-3.5 1 1-3.5L14.5 2.5z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12.5 4.5l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Zero-latency ink</h3>
+          <p class="feature-body">
+            PencilKit under the hood, tuned to 120 Hz. Writing feels like paper —
+            because the only thing slower than you should be gravity.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--sage" aria-hidden="true">
+            <!-- Graph / nodes icon -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="6"  r="2.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="4"  cy="15" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="16" cy="15" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="10" y1="8.5"  x2="4"  y2="12.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <line x1="10" y1="8.5"  x2="16" y2="12.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <line x1="4"  y1="15"   x2="16" y2="15"   stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Living knowledge graph</h3>
+          <p class="feature-body">
+            Every link you write pulls the graph into a new shape. Force-directed
+            physics surface clusters naturally — no manual arrangement needed.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon feature-icon--neutral" aria-hidden="true">
+            <!-- Sparkle / AI icon -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2v3M10 15v3M2 10h3M15 10h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4.2 4.2l2.1 2.1M13.7 13.7l2.1 2.1M4.2 15.8l2.1-2.1M13.7 6.3l2.1-2.1"
+                    stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">AI tools (Pro)</h3>
+          <p class="feature-body">
+            Summarise a note, find hidden connections, or ask a question across your
+            entire notebook. Powered by Gemini. Stays on-device when possible.
+            Free to try; Lumen Pro to keep.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECOND CTA
+  ============================================================ -->
+  <section class="cta-band" aria-labelledby="cta-heading">
+    <div class="container">
+      <h2 class="cta-heading" id="cta-heading">
+        Be first when Lumen ships
+      </h2>
+      <p class="cta-sub">
+        Early access list. One email when we launch — that's it.
+      </p>
+
+      <form
+        class="waitlist-form"
+        action="#"
+        method="post"
+        aria-label="Join the waitlist (bottom)"
+      >
+        <input
+          class="waitlist-input"
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required
+          aria-label="Email address"
+        />
+        <button class="waitlist-btn" type="submit">Get early access</button>
+      </form>
+      <p class="waitlist-note">Free to join. No spam. Launch notification only.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
+
+      <div class="footer-logo">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 16 L13 33" stroke="oklch(0.500 0.008 72)" stroke-width="2.4" stroke-linecap="round" opacity="0.7"/>
+          <path d="M24 16 L35 33" stroke="oklch(0.500 0.008 72)" stroke-width="2.4" stroke-linecap="round" opacity="0.7"/>
+          <path d="M13 33 L35 33" stroke="oklch(0.500 0.008 72)" stroke-width="2.4" stroke-linecap="round" opacity="0.45"/>
+          <circle cx="13" cy="33" r="4.2" fill="oklch(0.500 0.008 72)" opacity="0.85"/>
+          <circle cx="35" cy="33" r="4.2" fill="oklch(0.500 0.008 72)" opacity="0.85"/>
+          <circle cx="24" cy="16" r="8"   fill="oklch(0.500 0.008 72)"/>
+        </svg>
+        <span class="footer-wordmark">Lumen</span>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <!-- Placeholder links — wire these up when pages exist -->
+        <a class="footer-link" href="#">Privacy</a>
+        <a class="footer-link" href="#">Contact</a>
+        <a class="footer-link" href="#">Twitter / X</a>
+      </nav>
+
+      <p class="footer-copy">&copy; 2026 Lumen. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
