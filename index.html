@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Lumen is an iPad-first handwriting app where every note becomes a node in a living knowledge graph. Think spatially. Remember everything." />
   <title>Lumen — Your notes, connected</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <!-- Bump LANDING_VERSION on every deploy so the console confirms the live build -->
   <script>
-    window.LANDING_VERSION = "v1.1.0";
-    console.log("%cLumen landing " + window.LANDING_VERSION + " — build 2026-07-08", "color:#C4A57B;font-weight:600;font-size:13px");
+    window.LANDING_VERSION = "v1.2.0";
+    console.log("%cLumen landing " + window.LANDING_VERSION + " — build 2026-07-12", "color:#C4A57B;font-weight:600;font-size:13px");
   </script>
 </head>
 <body>
@@ -62,9 +63,12 @@
       </h1>
 
       <p class="hero-sub">
-        Lumen is a handwriting-first iPad app where every note becomes a node.
-        Write with your Pencil. Watch your thinking take shape.
+        You already handwrite your notes. Lumen turns that ink into a linked graph
+        the moment you write it — no retyping into a second app just to make it
+        searchable.
       </p>
+
+      <p class="hero-pain-line">Stop retyping handwritten notes into a second app.</p>
 
       <!-- Waitlist capture -->
       <form
@@ -84,17 +88,33 @@
           aria-label="Email address"
         />
         <button class="waitlist-btn" type="submit">Get early access</button>
+
+        <div class="waitlist-consent">
+          <input
+            class="waitlist-checkbox"
+            type="checkbox"
+            id="age-consent-hero"
+            name="age_consent"
+            required
+            aria-required="true"
+          />
+          <label class="waitlist-consent-label" for="age-consent-hero">
+            I'm 13 or older and agree to the <a href="privacy.html">privacy policy</a>.
+          </label>
+        </div>
       </form>
       <p class="waitlist-note">Free to join. No spam. Launch notification only.</p>
 
       <!-- Graph illustration — interactive canvas (graph.js) -->
-      <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual">
         <div class="hero-graph-card">
           <p class="hero-graph-label">knowledge graph · 12 notes · 18 connections</p>
+          <p class="hero-graph-hint" id="graph-hint">Drag a note — the graph responds.</p>
           <canvas
             id="graph-canvas"
             class="graph-scene"
-            aria-hidden="true"
+            role="img"
+            aria-label="Interactive knowledge graph demo — drag any node to see connected notes respond"
             style="touch-action: none; display: block; width: 100%; aspect-ratio: 720 / 340;"
           ></canvas>
         </div>
@@ -129,11 +149,11 @@
         <!-- Step 2 -->
         <div class="step-card">
           <p class="step-number">02</p>
-          <h3 class="step-title">Link what belongs together</h3>
+          <h3 class="step-title">No retyping into another app</h3>
           <p class="step-body">
-            Type <code style="font-family: var(--font-mono); font-size: 0.8em; background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 4px;">[[Note title]]</code> anywhere and a
-            connection is born. Backlinks appear automatically. The graph builds itself
-            as you write.
+            Type <code style="font-family: var(--font-mono); font-size: 0.8em; background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 4px;">[[Note title]]</code> anywhere in
+            your handwritten or typed note and a connection is born automatically.
+            The same ink you already wrote — not a copy of it somewhere else.
           </p>
         </div>
 
@@ -212,11 +232,10 @@
                     stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
             </svg>
           </div>
-          <h3 class="feature-title">AI tools (Pro)</h3>
+          <h3 class="feature-title">AI that knows your graph <span class="nav-badge feature-title-badge">Lumen Pro — coming</span></h3>
           <p class="feature-body">
-            Summarise a note, find hidden connections, or ask a question across your
-            entire notebook. Powered by Gemini. Stays on-device when possible.
-            Free to try; Lumen Pro to keep.
+            Ask a question across your whole notebook and get an answer that
+            understands how your notes relate, not just what's on one page.
           </p>
         </div>
 
@@ -252,6 +271,20 @@
           aria-label="Email address"
         />
         <button class="waitlist-btn" type="submit">Get early access</button>
+
+        <div class="waitlist-consent">
+          <input
+            class="waitlist-checkbox"
+            type="checkbox"
+            id="age-consent-cta"
+            name="age_consent"
+            required
+            aria-required="true"
+          />
+          <label class="waitlist-consent-label" for="age-consent-cta">
+            I'm 13 or older and agree to the <a href="privacy.html">privacy policy</a>.
+          </label>
+        </div>
       </form>
       <p class="waitlist-note">Free to join. No spam. Launch notification only.</p>
     </div>
@@ -276,10 +309,9 @@
       </div>
 
       <nav class="footer-links" aria-label="Footer navigation">
-        <!-- Placeholder links — wire these up when pages exist -->
-        <a class="footer-link" href="#">Privacy</a>
-        <a class="footer-link" href="#">Contact</a>
-        <a class="footer-link" href="#">Twitter / X</a>
+        <a class="footer-link" href="privacy.html">Privacy</a>
+        <a class="footer-link" href="mailto:support@lumen.app">Contact</a>
+        <a class="footer-link" href="https://instagram.com/lumen.notebook" target="_blank" rel="noopener">Instagram</a>
       </nav>
 
       <p class="footer-copy">&copy; 2026 Lumen. All rights reserved.</p>
@@ -290,6 +322,69 @@
        INTERACTIVE HERO GRAPH (physics + drag)
   ============================================================ -->
   <script src="graph.js"></script>
+
+  <!-- ============================================================
+       SCROLL REVEAL (step + feature card grids only)
+  ============================================================ -->
+  <script src="reveal.js"></script>
+
+  <!-- ============================================================
+       PRIVACY LINK — GRACEFUL FALLBACK
+       privacy.html exists in this source folder but is intentionally
+       NOT part of the deployed lumen-landing repo yet (pending legal
+       review). Rather than let the one link a visitor is required to
+       open before submitting the waitlist form 404 on the live site,
+       probe for it first and fall back to an inline note if it's
+       missing.
+  ============================================================ -->
+  <script>
+    (function () {
+      var privacyExists = null; // null = unknown, true/false = cached result
+
+      function insertFallbackNote(link) {
+        var consentHost = link.closest(".waitlist-consent");
+        var footerHost = link.closest(".footer-links");
+        var host = consentHost || footerHost;
+        if (!host) return;
+        if (host.querySelector(".privacy-fallback")) return;
+
+        var note = document.createElement("p");
+        note.className = "privacy-fallback";
+        note.setAttribute("role", "status");
+        note.textContent = "Privacy policy is publishing soon — email support@lumen.app with questions.";
+
+        if (consentHost) {
+          consentHost.insertAdjacentElement("afterend", note);
+        } else {
+          footerHost.appendChild(note);
+        }
+      }
+
+      document.querySelectorAll('a[href="privacy.html"]').forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          if (privacyExists === true) return; // known good — let it navigate normally
+          e.preventDefault();
+
+          if (privacyExists === false) {
+            insertFallbackNote(link);
+            return;
+          }
+
+          fetch("privacy.html", { method: "HEAD" }).then(function (res) {
+            privacyExists = res.ok;
+            if (res.ok) {
+              window.location.href = "privacy.html";
+            } else {
+              insertFallbackNote(link);
+            }
+          }).catch(function () {
+            privacyExists = false;
+            insertFallbackNote(link);
+          });
+        });
+      });
+    })();
+  </script>
 
   <!-- ============================================================
        WAITLIST → SUPABASE
@@ -305,10 +400,20 @@
         form.addEventListener("submit", function (e) {
           e.preventDefault();
           var input = form.querySelector('input[type="email"]');
+          var consent = form.querySelector('input[name="age_consent"]');
           var button = form.querySelector('button[type="submit"]');
           var note = form.parentElement.querySelector(".waitlist-note");
           var email = (input && input.value || "").trim();
+          if (note) { note.classList.remove("waitlist-note--alert"); }
           if (!email) return;
+
+          if (consent && !consent.checked) {
+            if (note) {
+              note.textContent = "Please confirm you're 13 or older and agree to the privacy policy.";
+              note.classList.add("waitlist-note--alert");
+            }
+            return;
+          }
 
           if (button) { button.disabled = true; button.textContent = "Joining…"; }
 

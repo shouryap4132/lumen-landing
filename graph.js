@@ -469,10 +469,24 @@
     resizeTimer = setTimeout(resize, 80);
   });
 
+  /* ── Discoverability hint ──────────────────────────────── */
+  // Reveals the "Drag a note — the graph responds." hint shortly after the
+  // graph itself becomes ready, so both feel like one moment. Purely a fade
+  // driven by CSS (gated on prefers-reduced-motion there); this just flips
+  // the class. Does not touch simulation state.
+  function revealHint() {
+    var hint = document.getElementById("graph-hint");
+    if (!hint) return;
+    setTimeout(function () {
+      hint.classList.add("is-visible");
+    }, 300);
+  }
+
   /* ── Boot ──────────────────────────────────────────────── */
   // Wait for fonts to load so Shantell Sans renders correctly
   function init() {
     resize();
+    revealHint();
     if (prefersReduced) {
       // Static render only — no animation loop
       drawStatic();

@@ -243,6 +243,15 @@ button, input { font-family: inherit; }
   color: var(--text-muted);
   max-width: 44ch;
   margin-inline: auto;
+  margin-bottom: 1.25rem;
+}
+
+.hero-pain-line {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent);
   margin-bottom: 2.5rem;
 }
 
@@ -312,6 +321,86 @@ button, input { font-family: inherit; }
   color: var(--text-muted);
 }
 
+.waitlist-note--alert {
+  color: var(--lumen-700);
+  font-weight: 500;
+}
+
+/* Age / privacy consent checkbox */
+.waitlist-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 26rem;
+  margin: 0.625rem auto 0;
+  text-align: left;
+}
+
+.waitlist-checkbox {
+  flex: none;
+  width: 1.0625rem;
+  height: 1.0625rem;
+  margin-top: 0.125rem;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--surface-1);
+  border: 1px solid var(--glass-border-lit);
+  border-radius: 0.3125rem;
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out);
+}
+
+.waitlist-checkbox:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.waitlist-checkbox:checked::after {
+  content: "";
+  display: block;
+  width: 0.3125rem;
+  height: 0.5625rem;
+  margin: 0.0625rem auto 0;
+  border-right: 1.5px solid oklch(1 0 0);
+  border-bottom: 1.5px solid oklch(1 0 0);
+  transform: rotate(40deg);
+}
+
+.waitlist-checkbox:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-1), 0 0 0 3px var(--accent-soft);
+}
+
+.waitlist-consent-label {
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-muted);
+}
+
+.waitlist-consent-label a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.waitlist-consent-label a:hover {
+  color: var(--accent-hover);
+}
+
+/* Graceful fallback note if privacy.html isn't deployed yet (see index.html
+   inline script) — reuses the waitlist-note register rather than a new
+   component. */
+.privacy-fallback {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: left;
+  max-width: 26rem;
+  margin: 0.625rem auto 0;
+}
+
 /* Hero graph illustration */
 .hero-visual {
   margin-top: 3.5rem;
@@ -337,8 +426,34 @@ button, input { font-family: inherit; }
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: var(--tracking-wide);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.375rem;
   text-align: left;
+}
+
+.hero-graph-hint {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-wide);
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+/* Fade the hint in a beat after the graph settles, so it reads as one
+   moment. No-op (fully visible, no motion) under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-graph-hint {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity var(--dur-3) var(--ease-out),
+                transform var(--dur-3) var(--ease-out);
+  }
+
+  .hero-graph-hint.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Graph scene — canvas replaces the old SVG; same sizing behaviour */
@@ -396,6 +511,21 @@ button, input { font-family: inherit; }
   gap: 1.25rem;
 }
 
+/* Scroll-reveal stagger — .step-card / .feature-card only (reveal.js).
+   JS already skips this entirely under reduced motion; the media query
+   here is a belt-and-suspenders no-op guarantee if JS runs regardless. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-init {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .reveal-init.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .step-card {
   background: var(--surface-1);
   border: 1px solid var(--glass-border);
@@ -404,7 +534,8 @@ button, input { font-family: inherit; }
   box-shadow: var(--shadow-1);
   transition: box-shadow var(--dur-3) var(--ease-out),
               transform var(--dur-3) var(--ease-out),
-              border-color var(--dur-3) var(--ease-out);
+              border-color var(--dur-3) var(--ease-out),
+              opacity var(--dur-3) var(--ease-out);
 }
 
 .step-card:hover {
@@ -460,7 +591,8 @@ button, input { font-family: inherit; }
   padding: 2rem 1.75rem;
   box-shadow: var(--shadow-1), var(--sheen);
   transition: box-shadow var(--dur-3) var(--ease-out),
-              transform var(--dur-3) var(--ease-out);
+              transform var(--dur-3) var(--ease-out),
+              opacity var(--dur-3) var(--ease-out);
 }
 
 .feature-card:hover {
@@ -500,6 +632,11 @@ button, input { font-family: inherit; }
   letter-spacing: var(--tracking-tight);
   color: var(--text-strong);
   margin-bottom: 0.5rem;
+}
+
+.feature-title-badge {
+  vertical-align: middle;
+  margin-left: 0.5rem;
 }
 
 .feature-body {
@@ -575,6 +712,12 @@ button, input { font-family: inherit; }
 
 .footer-link:hover { color: var(--text-strong); }
 
+.footer-links .privacy-fallback {
+  flex-basis: 100%;
+  margin: 0.25rem 0 0;
+  max-width: none;
+}
+
 .footer-copy {
   font-size: var(--text-sm);
   color: var(--text-muted);
@@ -590,6 +733,181 @@ button, input { font-family: inherit; }
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.04em;
+}
+
+/* ---------- Legal pages (privacy / terms) ---------- */
+.legal-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--lumen-700);
+  background: var(--accent-soft);
+  border: 1px solid var(--glass-border-lit);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.legal {
+  padding-top: 3.5rem;
+  padding-bottom: 5rem;
+}
+
+.legal-header {
+  margin-bottom: 2.5rem;
+}
+
+.legal-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.legal-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
+  font-weight: 700;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--text-strong);
+  line-height: var(--leading-tight);
+  margin-bottom: 0.75rem;
+}
+
+.legal-meta {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.legal-body {
+  max-width: 46rem;
+}
+
+.legal-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: var(--leading-snug);
+}
+
+.legal-body h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal-body h4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text-strong);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-body p {
+  font-size: var(--text-base);
+  color: var(--text-body);
+  line-height: var(--leading-normal);
+  margin-bottom: 1rem;
+}
+
+.legal-body ul,
+.legal-body ol {
+  margin: 0 0 1rem 1.25rem;
+  color: var(--text-body);
+  line-height: var(--leading-normal);
+}
+
+.legal-body li {
+  margin-bottom: 0.4rem;
+}
+
+.legal-body strong { color: var(--text-strong); font-weight: 600; }
+
+.legal-body a {
+  color: var(--connection);
+  text-decoration: underline;
+  text-decoration-color: var(--connection-soft);
+  text-underline-offset: 0.15em;
+}
+
+.legal-body a:hover { text-decoration-color: var(--connection); }
+
+.legal-body code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--accent-soft);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+
+.legal-body hr {
+  border: none;
+  border-top: 1px solid var(--hairline);
+  margin: 2.5rem 0;
+}
+
+.legal-callout {
+  background: var(--surface-1);
+  border: 1px solid var(--glass-border-lit);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-1);
+  margin-bottom: 2rem;
+}
+
+.legal-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+.legal-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.legal-body th,
+.legal-body td {
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+}
+
+.legal-body th {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--text-strong);
+  background: var(--bg-sunken);
+}
+
+.legal-body tr:last-child td { border-bottom: none; }
+
+.legal-end {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 3rem;
 }
 
 /* ---------- Responsive ---------- */
