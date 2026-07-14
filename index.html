@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles.css" />
   <!-- Bump LANDING_VERSION on every deploy so the console confirms the live build -->
   <script>
-    window.LANDING_VERSION = "v1.2.0";
+    window.LANDING_VERSION = "v1.2.1";
     console.log("%cLumen landing " + window.LANDING_VERSION + " — build 2026-07-12", "color:#C4A57B;font-weight:600;font-size:13px");
   </script>
 </head>
@@ -63,9 +63,9 @@
       </h1>
 
       <p class="hero-sub">
-        You already handwrite your notes. Lumen turns that ink into a linked graph
-        the moment you write it — no retyping into a second app just to make it
-        searchable.
+        You already write by hand. Lumen links those notes into a graph as you
+        write them, so you never have to retype anything into a second app to
+        make it searchable.
       </p>
 
       <p class="hero-pain-line">Stop retyping handwritten notes into a second app.</p>
@@ -103,7 +103,7 @@
           </label>
         </div>
       </form>
-      <p class="waitlist-note">Free to join. No spam. Launch notification only.</p>
+      <p class="waitlist-note">Free to join. We'll email you once, when it launches.</p>
 
       <!-- Graph illustration — interactive canvas (graph.js) -->
       <div class="hero-visual">
@@ -130,9 +130,9 @@
   <section class="how" aria-labelledby="how-heading">
     <div class="container">
       <p class="section-eyebrow">How it works</p>
-      <h2 class="section-heading" id="how-heading">Write. Link. Explore.</h2>
+      <h2 class="section-heading" id="how-heading">Write it once</h2>
       <p class="section-sub">
-        Three interactions. One coherent picture of your thinking.
+        Write the way you already do. The connections build themselves.
       </p>
 
       <div class="steps">
@@ -141,8 +141,8 @@
           <p class="step-number">01</p>
           <h3 class="step-title">Write by hand</h3>
           <p class="step-body">
-            Pick up your Apple Pencil and write. Lumen captures ink at full Pencil
-            latency — pressure, tilt, all of it. No lag, no compromise.
+            Pick up your Apple Pencil and write. Lumen captures full pressure and
+            tilt through PencilKit, at 120 Hz on the iPads that support it.
           </p>
         </div>
 
@@ -151,9 +151,9 @@
           <p class="step-number">02</p>
           <h3 class="step-title">No retyping into another app</h3>
           <p class="step-body">
-            Type <code style="font-family: var(--font-mono); font-size: 0.8em; background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 4px;">[[Note title]]</code> anywhere in
-            your handwritten or typed note and a connection is born automatically.
-            The same ink you already wrote — not a copy of it somewhere else.
+            Write <code style="font-family: var(--font-mono); font-size: 0.8em; background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 4px;">[[Note title]]</code> anywhere, by hand or typed, and
+            the link is made. It's the same note you already wrote, not a copy
+            of it living somewhere else.
           </p>
         </div>
 
@@ -162,8 +162,9 @@
           <p class="step-number">03</p>
           <h3 class="step-title">See the shape of your thinking</h3>
           <p class="step-body">
-            Open the graph and watch your notes orbit one another. Physics-driven
-            layout reveals clusters and connections you didn't know existed.
+            Open the graph and your notes pull on each other. Clusters form on
+            their own, which is usually where you find the thing you forgot
+            you knew.
           </p>
         </div>
       </div>
@@ -176,10 +177,10 @@
   <section class="features" aria-labelledby="features-heading">
     <div class="container">
       <p class="section-eyebrow">Built for iPad</p>
-      <h2 class="section-heading" id="features-heading">Everything in service of the Pencil</h2>
+      <h2 class="section-heading" id="features-heading">Made for the Pencil, not a keyboard</h2>
       <p class="section-sub">
-        No keyboard required. No desktop-style menus. Lumen is touch and Pencil
-        from the first pixel.
+        Touch and Pencil first, with none of the desktop menus most apps bolt
+        onto a tablet.
       </p>
 
       <div class="features-grid">
@@ -194,10 +195,11 @@
               <path d="M12.5 4.5l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <h3 class="feature-title">Zero-latency ink</h3>
+          <h3 class="feature-title">Ink that keeps up</h3>
           <p class="feature-body">
-            PencilKit under the hood, tuned to 120 Hz. Writing feels like paper —
-            because the only thing slower than you should be gravity.
+            PencilKit under the hood, running at 120 Hz on the iPads that
+            support it. Pressure, tilt, and the full stroke, exactly as you
+            drew it.
           </p>
         </div>
 
@@ -214,10 +216,10 @@
               <line x1="4"  y1="15"   x2="16" y2="15"   stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
             </svg>
           </div>
-          <h3 class="feature-title">Living knowledge graph</h3>
+          <h3 class="feature-title">A graph that moves</h3>
           <p class="feature-body">
-            Every link you write pulls the graph into a new shape. Force-directed
-            physics surface clusters naturally — no manual arrangement needed.
+            Every link you write changes its shape. Force-directed physics, so
+            the clusters appear on their own instead of you arranging them.
           </p>
         </div>
 
@@ -235,7 +237,7 @@
           <h3 class="feature-title">AI that knows your graph <span class="nav-badge feature-title-badge">Lumen Pro — coming</span></h3>
           <p class="feature-body">
             Ask a question across your whole notebook and get an answer that
-            understands how your notes relate, not just what's on one page.
+            understands how the notes connect, not just what one page says.
           </p>
         </div>
 
@@ -252,7 +254,7 @@
         Be first when Lumen ships
       </h2>
       <p class="cta-sub">
-        Early access list. One email when we launch — that's it.
+        One email when it launches. Nothing else.
       </p>
 
       <form
@@ -286,7 +288,7 @@
           </label>
         </div>
       </form>
-      <p class="waitlist-note">Free to join. No spam. Launch notification only.</p>
+      <p class="waitlist-note">Free to join. We'll email you once, when it launches.</p>
     </div>
   </section>
 
